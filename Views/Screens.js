@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-const Screens = () => {
+const Screens = ({ navigation }) => {
     const [hour, setHour] = useState('00');
     const [minute, setMinute] = useState('00');
     const [second, setSecond] = useState('00');
@@ -42,6 +42,9 @@ const Screens = () => {
         getSecond();
     }, 1000)
 
+    const ShowPage = (page) => {
+        navigation.navigate(page)
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.hour}>{hour}</Text>
@@ -50,13 +53,13 @@ const Screens = () => {
             {/* <Text style={styles.ampm}>{ampm}</Text> */}
 
             <View style={styles.bottomnav}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => ShowPage('s1')}>
                     <View style={styles.bottomnavtext}>
                         <AntDesign name="clockcircle" size={30} color="black" />
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => ShowPage('s2')}>
                     <View style={styles.bottomnavtext}>
                         <Ionicons name="timer" size={30} color="black" />
                     </View>

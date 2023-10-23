@@ -8,6 +8,14 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='s1' component={Screens} options={{
+          headerShown: false
+        }} />
+        <Stack.Screen name='s2' component={Screen2} options={{
+          headerShown: false
+        }} />
+      </Stack.Navigator>
 
     </NavigationContainer>
   );

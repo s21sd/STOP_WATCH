@@ -2,23 +2,40 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-const Screen2 = () => {
-   
+const Screen2 = ({ navigation }) => {
+    const ShowPage = (page) => {
+        navigation.navigate(page)
+    }
+
     return (
         <View style={styles.container}>
-            <Text style={styles.hour}>00</Text>
-            <Text style={styles.minute}>00</Text>
-            <Text style={styles.second}>00</Text>
-            {/* <Text style={styles.ampm}>{ampm}</Text> */}
+            <Text style={styles.hour}>00
+                <Text style={styles.small}>HH</Text>
+            </Text>
+            <Text style={styles.minute}>00
+                <Text style={styles.small}>MIN</Text>
+            </Text>
+            <Text style={styles.second}>00
+                <Text style={styles.small}>SEC</Text>
+            </Text>
+            <View style={styles.startstop}>
+                <TouchableOpacity>
+                    <Text style={styles.start}>Start</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                    <Text style={styles.stop}>Stop</Text>
+                </TouchableOpacity>
+            </View>
 
             <View style={styles.bottomnav}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => ShowPage('s1')}>
                     <View style={styles.bottomnavtext}>
                         <AntDesign name="clockcircle" size={30} color="black" />
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => ShowPage('s2')}>
                     <View style={styles.bottomnavtext}>
                         <Ionicons name="timer" size={30} color="black" />
                     </View>
@@ -37,31 +54,28 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
 
+
     },
     hour: {
         color: 'white',
-        fontSize: 180,
+        fontSize: 140,
         fontWeight: 'bold',
     },
     minute: {
         color: 'white',
-        fontSize: 160,
+        fontSize: 140,
         fontWeight: 'bold',
         height: 180,
 
     },
     second: {
         color: 'white',
-        fontSize: 160,
+        fontSize: 140,
         fontWeight: 'bold',
         height: 180,
+        marginBottom:20
 
 
-    }, ampm: {
-        color: 'white',
-        fontSize: 50,
-        fontWeight: 'bold',
-        // height: 180,
     },
     bottomnav: {
         // backgroundColor: 'white',
@@ -83,6 +97,29 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 10,
         textAlign: 'center'
+    }
+    , small: {
+        color: 'gray',
+        fontSize: 20,
+    },
+    startstop: {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 50
+    },
+    start: {
+        color: 'black',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 10
+
+    },
+    stop: {
+        color: 'black',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 10
+
     }
 
 
